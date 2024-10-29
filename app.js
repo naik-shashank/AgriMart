@@ -1,15 +1,18 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require('cors');
 
 const apierror = require("./utils/apierror");
 const { errcall } = require("./Controllers/errcontroller");
 
 dotenv.config({ path: "conf.env" });
 
+
 const outletRouter=require('./routes/adminRoute')
 const userRouter=require('./routes/userRoute')
 
 const app = express();
+app.use(cors())
 app.use(express.json());
 app.use("/outlet",outletRouter)
 app.use("/user",userRouter)
